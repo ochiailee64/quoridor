@@ -1,0 +1,25 @@
+# operating system (OS) metadata
+.DS_Store
+
+Thumbs.db
+[Dd]esktop.ini
+
+# backup
+*~
+*.bak
+
+# temporary files
+.*.swp
+
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+
+
+## Integrated Development Environments (IDEs)
+
+# IntelliJ IDEA
+.idea/

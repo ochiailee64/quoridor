@@ -1,0 +1,48 @@
+name: lint
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  git-diff--check:
+    name: git diff --check
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: git diff --check
+        uses: joel-coffman/action-git-diff-check@0.1.1
+
+  doc8:
+    name: doc8
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: install dependencies
+        run: pip install doc8
+      - name: run doc8
+        run: doc8 .
+
+  spelling:
+    name: spelling
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-go@v2
+      - name: install dependencies
+        run: curl -L https://git.io/misspell | sudo bash
+        working-directory: /usr/local/
+      - name: run misspell
+        run: |
+          misspell --error \
+              $(git diff-tree -m --no-commit-id --name-only -r HEAD)

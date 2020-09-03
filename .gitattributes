@@ -1,0 +1,2 @@
+*.bat	text eol=crlf
+*.rst	conflict-marker-size=80
