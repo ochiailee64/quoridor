@@ -50,3 +50,8 @@ test {
 checkstyle {
     toolVersion '8.35'
 }
+
+pmd {
+    consoleOutput = true
+    ruleSets = ["rulesets/java/quickstart.xml"]
+}
