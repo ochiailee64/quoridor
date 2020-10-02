@@ -52,9 +52,12 @@ questions:
 Proposed Change
 ===============
 
-This section describes how the requirements will be satisfied by the software
-system. Considerable detail should be provided -- enough that someone else
-could implement this feature.
+This section describes your design -- i.e., how the prior requirements will be
+satisfied by the system. What classes, data structures, and algorithms will you
+use? What ancillary changes must be made to the system's existing design in the
+process of implementing your change? Considerable detail should be provided --
+enough that someone else could implement this feature with nothing beyond this
+specification for guidance.
 
 If this feature is part of a larger effort, include at least one paragraph
 describing how this feature fits into the larger system. Be sure to include
