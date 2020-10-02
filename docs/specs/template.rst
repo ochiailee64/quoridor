@@ -96,8 +96,20 @@ Work Items
 
 If this feature will be implemented in phases (and most features should be!),
 enumerate the individual pieces that will collectively implement the proposed
-change. Work items may be supported by different people, but they also provide
-a rough timeline for the proposed feature.
+change. In general, each work item should be developed on its own branch and
+have its own pull request(s). Work items may be supported by different people,
+but they also provide a rough timeline for implementing the proposed feature.
+
+Use an ordered list for the work items to indicate the order in which they
+should be completed. For example,
+
+1. First task with specific milestone
+2. Second task with specific milestone
+3. Third task with specific milestone
+4. ...
+
+Using an enumerated list also makes it easy to assign tasks to the responsible
+individual(s).
 
 Assignee(s)
 -----------
@@ -107,11 +119,17 @@ require multiple contributors, please designate the "lead" who will oversee all
 aspects of the work and other contributors, including those contributors'
 specific contributions.
 
-Primary assignee:
-  Name and Email
+Use an ordered list to indicate the responsible individual(s) for each work
+item that appears above -- e.g.,
 
-Other contributors:
-  Name and Email
+1. Primary assignee
+2. Primary assignee, other contributor, other contributor
+3. Primary assignee, other contributor
+4. ...
+
+In general, the work items should be delegated across your team's members, but
+it's reasonable to assign the same individual to multiple work items,
+particularly when those work items are small tasks.
 
 References
 ==========
