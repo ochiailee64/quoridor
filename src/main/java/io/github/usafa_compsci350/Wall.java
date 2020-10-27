@@ -24,13 +24,6 @@ public class Wall extends GamePieces {
   }
 
   /*
-   * isValidMove() - check to see if the move is valid
-   */
-//    public boolean isValidMove() {
-//        return x % 2 == 0 && y % 2 == 0;
-//    }
-
-  /*
    * getX2() - getter function
    */
   public int getX2() {
@@ -79,10 +72,11 @@ public class Wall extends GamePieces {
       System.out.println("Enter new y");
       newY = s.nextInt();
 
-      if (newX % 2 != 0 && newY % 2 != 0)
+      if (newX % 2 != 0 && newY % 2 != 0) {
         System.out.println("Not valid");
-      else
+      } else {
         break;
+      }
     }
 
     x = newX;
@@ -92,13 +86,13 @@ public class Wall extends GamePieces {
     Scanner sx = new Scanner(System.in);
     String direction = sx.nextLine();
 
-    if (direction.equalsIgnoreCase("up")) {
+    if ("up".equalsIgnoreCase(direction)) {
       x2 = newX - 2;
       y2 = y;
-    } else if (direction.equalsIgnoreCase("down")) {
+    } else if ("down".equalsIgnoreCase(direction)) {
       x2 = newX + 2;
       y2 = y;
-    } else if (direction.equalsIgnoreCase("left")) {
+    } else if ("left".equalsIgnoreCase(direction)) {
       y2 = newY - 2;
       x2 = newX;
     } else {

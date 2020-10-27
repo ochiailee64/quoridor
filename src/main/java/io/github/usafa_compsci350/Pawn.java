@@ -46,7 +46,7 @@ public class Pawn extends GamePieces {
     System.out.println("Please enter up down left right");
     while (true) {
       String direction = s.nextLine();
-      if (direction.equalsIgnoreCase("up")) {
+      if ("up".equalsIgnoreCase(direction)) {
         if (!determineTopBlocking(board)) {
           x -= 2;
           break;
@@ -55,7 +55,7 @@ public class Pawn extends GamePieces {
         }
       }
 
-      if (direction.equalsIgnoreCase("down")) {
+      if ("down".equalsIgnoreCase(direction)) {
         if (!determineBotBlocking(board)) {
           x += 2;
           break;
@@ -64,7 +64,7 @@ public class Pawn extends GamePieces {
         }
       }
 
-      if (direction.equalsIgnoreCase("left")) {
+      if ("left".equalsIgnoreCase(direction)) {
         if (!determineLeftBlocking(board)) {
           y -= 2;
           break;
@@ -73,7 +73,7 @@ public class Pawn extends GamePieces {
         }
       }
 
-      if (direction.equalsIgnoreCase("right")) {
+      if ("right".equalsIgnoreCase(direction)) {
         if (!determineRightBlocking(board)) {
           y += 2;
           break;
