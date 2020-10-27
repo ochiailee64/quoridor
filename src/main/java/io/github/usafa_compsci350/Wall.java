@@ -1,7 +1,5 @@
 package io.github.usafa_compsci350;
 
-import java.util.Scanner;
-
 public class Wall extends GamePieces {
   /* Fields */
   public int x2;
