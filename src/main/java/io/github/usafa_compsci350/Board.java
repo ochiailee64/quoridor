@@ -8,6 +8,11 @@ public class Board {
   public static final int SIZE = 19; //Size of board + 2 rows/columns for unplaced walls
 
   public static void main(String[] args) {
+    Board board = new Board();
+    board.play();
+  }
+
+  public void play() {
     int playerturn = 1;
     //Per current spec, num of players is 2
     GamePieces[][] gamePieces = new GamePieces[SIZE][SIZE];
@@ -42,7 +47,8 @@ public class Board {
     /* Let user place pawns and walls */
     int p1WallIndex = 0; //place walls from "left to right" (really index 0 to 9)
     int p2WallIndex = 0;
-    while (true) {
+    Pawn ctrlPwn = p1pawn; //player 1 always goes first
+    while (determineWin(playerturn, ctrlPwn)) {
       drawBoard(gamePieces);
       if (playerturn == 1) {
         System.out.println("Turn: Player 1");
@@ -69,13 +75,11 @@ public class Board {
       } else {
         playerturn = 1;
       }
-
     }
     s.close(); //close scanner
     drawBoard(gamePieces);
     System.out.printf("Winner is %d won", playerturn);
   }
-
   /*
    * drawBoard() - draw the gamePieces
    */
@@ -179,18 +183,16 @@ public class Board {
   /*
    * determineWin() - check indices to check if a player has won
    */
-  public static int determineWin(int playerturn, Pawn p) {
-    if (playerturn == 1) {
+  public static int determineWin(int playerTurn, Pawn p) {
+    if (playerTurn == 1) {
       if (p.getX() >= 17) { //opponent start
         return 1;
       }
-    } else if (playerturn == 2) {
+    } else if (playerTurn == 2) {
       if (p.getX() <= 1) { //opponent start
         return 2;
       }
-    } else {
-      return -1;
     }
-    return -1;
+    return 0;
   }
 }
