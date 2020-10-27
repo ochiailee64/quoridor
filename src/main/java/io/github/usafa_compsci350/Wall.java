@@ -17,13 +17,6 @@ public class Wall extends GamePieces {
   }
 
   /*
-   * Constructor w/out super call
-   */
-  public Wall(int x, int y, int x2, int y2) {
-    super(x, y);
-  }
-
-  /*
    * getX2() - getter function
    */
   public int getX2() {
@@ -85,7 +78,7 @@ public class Wall extends GamePieces {
     System.out.println("Please enter up, down, left, or right: ");
     Scanner sx = new Scanner(System.in);
     String direction = sx.nextLine();
-
+    sx.close();
     if ("up".equalsIgnoreCase(direction)) {
       x2 = newX - 2;
       y2 = y1;

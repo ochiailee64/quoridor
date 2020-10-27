@@ -50,7 +50,8 @@ public class Board {
     int p2WallIndex = 0;
     int playerTurn = 1;
     Pawn ctrlPwn = p1pawn; //player 1 always goes first
-    while (determineWin(playerTurn - 1, ctrlPwn) == 0) { //check the previous turn
+    while (determineWin(playerTurn - 1,
+        ctrlPwn) == 0) { //check the previous turn
       drawBoard(gamePieces);
       if (playerTurn == 1) {
         System.out.println("Turn: Player 1");
