@@ -44,14 +44,11 @@ public class Board {
     gamePieces[p1pawn.getX()][p1pawn.getY()] = p1pawn;
     gamePieces[p2pawn.getX()][p2pawn.getY()] = p2pawn;
 
-    /* Draw Board */
-    //drawBoard(gamePieces);
-
     /* Let user place pawns and walls */
     int p1WallIndex = 0; //place walls from "left to right" (really index 0 to 9)
     int p2WallIndex = 0;
     Pawn ctrlPwn = p1pawn; //player 1 always goes first
-    while (determineWin(playerTurn, ctrlPwn) != 0) {
+    while (determineWin(playerTurn-1, ctrlPwn) == 0) { //check the previous turn
       drawBoard(gamePieces);
       if (playerTurn == 1) {
         System.out.println("Turn: Player 1");
@@ -77,7 +74,7 @@ public class Board {
     }
     s.close(); //close scanner
     drawBoard(gamePieces);
-    System.out.printf("Winner is %d won", playerTurn);
+    System.out.printf("Player %d has won!", playerTurn);
   }
 
   /*
@@ -85,8 +82,8 @@ public class Board {
    */
   public static void drawBoard(GamePieces[][] gamePieces) {
     char[][] ascii = new char[SIZE][SIZE];
-    for (int i = 0; i < gamePieces.length; i++) {
-      for (int j = 0; j < gamePieces[i].length; j++) {
+    for (int i = 0; i < SIZE; i++) {
+      for (int j = 0; j < SIZE; j++) {
         if (gamePieces[i][j] instanceof Pawn) {
           ascii[i][j] = '0';
         } else if (gamePieces[i][j] instanceof Wall) {
@@ -105,6 +102,7 @@ public class Board {
    * getInputWallorPawn() - Let user choose to place a "wall" or "pawn"
    */
   public IsWall.isWall getInputWallorPawn(Scanner s) {
+    System.out.println("Choice wall or pawn: ");
     String choice = s.nextLine();
     if ("wall".equalsIgnoreCase(choice)) {
       return IsWall.isWall.WALLIS;
