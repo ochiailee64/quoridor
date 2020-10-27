@@ -15,32 +15,33 @@ public class Pawn extends GamePieces {
    * determineBotBlocking() - return true there's no blocking wall upward
    */
   public boolean determineTopBlocking(GamePieces[][] board) {
-    return board[x - 1][y] != null;
+    return board[x1 - 1][y1] != null;
   }
 
   /*
    * determineBotBlocking() - return true there's no blocking wall to the right
    */
   public boolean determineRightBlocking(GamePieces[][] board) {
-    return board[x][y + 1] != null;
+    return board[x1][y1 + 1] != null;
   }
 
   /*
    * determineLeftBlocking() - return true there's no blocking wall to the left
    */
   public boolean determineLeftBlocking(GamePieces[][] board) {
-    return board[x][y - 1] != null;
+    return board[x1][y1 - 1] != null;
   }
 
   /*
    * determineBotBlocking() - return true there's no blocking wall downward
    */
   public boolean determineBotBlocking(GamePieces[][] board) {
-    return board[x + 1][y] != null;
+    return board[x1 + 1][y1] != null;
   }
 
   /*
-   * newPawnPosition() - Update the pawn's position on the board based on user commands
+   * newPawnPosition() - Update the pawn's
+   * position on the board based on user commands
    */
   public void newPawnPosition(Scanner s, GamePieces[][] board) {
     System.out.println("Please enter up down left right");
@@ -48,7 +49,7 @@ public class Pawn extends GamePieces {
       String direction = s.nextLine();
       if ("up".equalsIgnoreCase(direction)) {
         if (!determineTopBlocking(board)) {
-          x -= 2;
+          x1 -= 2;
           break;
         } else {
           System.out.println("invalid move");
@@ -57,7 +58,7 @@ public class Pawn extends GamePieces {
 
       if ("down".equalsIgnoreCase(direction)) {
         if (!determineBotBlocking(board)) {
-          x += 2;
+          x1 += 2;
           break;
         } else {
           System.out.println("invalid move");
@@ -66,7 +67,7 @@ public class Pawn extends GamePieces {
 
       if ("left".equalsIgnoreCase(direction)) {
         if (!determineLeftBlocking(board)) {
-          y -= 2;
+          y1 -= 2;
           break;
         } else {
           System.out.println("invalid move");
@@ -75,7 +76,7 @@ public class Pawn extends GamePieces {
 
       if ("right".equalsIgnoreCase(direction)) {
         if (!determineRightBlocking(board)) {
-          y += 2;
+          y1 += 2;
           break;
         } else {
           System.out.println("invalid move");

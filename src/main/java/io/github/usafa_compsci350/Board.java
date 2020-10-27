@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Board {
   /* Fields */
-  public static final int SIZE = 19; //Size of board + 2 rows/columns for unplaced walls
+  //Size of board + 2 rows/columns for unplaced walls
+  public static final int SIZE = 19;
 
   public static void main(String[] args) {
     Board board = new Board();
@@ -16,7 +17,6 @@ public class Board {
    * play() - play the game
    */
   public void play() {
-    int playerTurn = 1;
     //Per current spec, num of players is 2
     GamePieces[][] gamePieces = new GamePieces[SIZE][SIZE];
     Scanner s = new Scanner(System.in);
@@ -45,10 +45,12 @@ public class Board {
     gamePieces[p2pawn.getX()][p2pawn.getY()] = p2pawn;
 
     /* Let user place pawns and walls */
-    int p1WallIndex = 0; //place walls from "left to right" (really index 0 to 9)
+    //place walls from "left to right" (really index 0 to 9)
+    int p1WallIndex = 0;
     int p2WallIndex = 0;
+    int playerTurn = 1;
     Pawn ctrlPwn = p1pawn; //player 1 always goes first
-    while (determineWin(playerTurn-1, ctrlPwn) == 0) { //check the previous turn
+    while (determineWin(playerTurn - 1, ctrlPwn) == 0) { //check the previous turn
       drawBoard(gamePieces);
       if (playerTurn == 1) {
         System.out.println("Turn: Player 1");
@@ -101,16 +103,15 @@ public class Board {
   /*
    * getInputWallorPawn() - Let user choose to place a "wall" or "pawn"
    */
-  public IsWall.isWall getInputWallorPawn(Scanner s) {
+  public IsWall.TypeWall getInputWallorPawn(Scanner s) {
     System.out.println("Choice wall or pawn: ");
     String choice = s.nextLine();
     if ("wall".equalsIgnoreCase(choice)) {
-      return IsWall.isWall.WALLIS;
+      return IsWall.TypeWall.WALLIS;
+    } else if ("pawn".equalsIgnoreCase(choice)) {
+      return IsWall.TypeWall.WALLISNT;
     }
-    else if ("pawn".equalsIgnoreCase(choice)) {
-      return IsWall.isWall.WALLISNT;
-    }
-    return IsWall.isWall.WALLISNT;
+    return IsWall.TypeWall.WALLISNT;
   }
 
   /*
@@ -141,8 +142,8 @@ public class Board {
    */
   private boolean turn(Scanner s, GamePieces[][] gamePieces,
                        Pawn pawn, Wall[] playerWalls, int wallIndex) {
-    IsWall.isWall wallorNot = getInputWallorPawn(s);
-    if (wallorNot == IsWall.isWall.WALLISNT) {
+    IsWall.TypeWall wallorNot = getInputWallorPawn(s);
+    if (wallorNot == IsWall.TypeWall.WALLISNT) {
       System.out.println("selected pawn");
       removeOldPiece(gamePieces, pawn);
       pawn.newPawnPosition(s, gamePieces);
@@ -155,26 +156,6 @@ public class Board {
       tailUpdate(gamePieces, playerWalls[wallIndex]);
       updateBoard(gamePieces, playerWalls[wallIndex]);
       return true;
-    }
-  }
-
-  /*
-   * inputPlayerCount() - get number of players
-   */
-  private int inputPlayerCount() {
-    System.out.println("Welcome to the Quoridor!");
-    Scanner s = new Scanner(System.in);
-    while (true) {
-      System.out.println("\nEnter the number of players (2 or 4): ");
-      String input = s.next();
-      //ensure input is an integer
-      if ("2".equals(input)) {
-        return 2;
-      } else if ("4".equals(input)) {
-        return 4;
-      } else {
-        System.out.println("Invalid number of players. Please try again.");
-      }
     }
   }
 

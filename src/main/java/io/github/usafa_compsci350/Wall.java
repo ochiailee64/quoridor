@@ -79,8 +79,8 @@ public class Wall extends GamePieces {
       }
     }
 
-    x = newX;
-    y = newY;
+    x1 = newX;
+    y1 = newY;
 
     System.out.println("Please enter up, down, left, or right: ");
     Scanner sx = new Scanner(System.in);
@@ -88,10 +88,10 @@ public class Wall extends GamePieces {
 
     if ("up".equalsIgnoreCase(direction)) {
       x2 = newX - 2;
-      y2 = y;
+      y2 = y1;
     } else if ("down".equalsIgnoreCase(direction)) {
       x2 = newX + 2;
-      y2 = y;
+      y2 = y1;
     } else if ("left".equalsIgnoreCase(direction)) {
       y2 = newY - 2;
       x2 = newX;

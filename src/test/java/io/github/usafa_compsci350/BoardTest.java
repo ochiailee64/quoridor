@@ -1,10 +1,8 @@
 package io.github.usafa_compsci350;
 
-import java.util.Scanner;
-
-import org.junit.jupiter.api.Assertions;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Scanner;
+import org.junit.jupiter.api.Assertions;
 
 class BoardTest {
 
@@ -13,13 +11,14 @@ class BoardTest {
     Board board = new Board();
 
     Scanner validWall = new Scanner("wALl");
-    Assertions.assertEquals(IsWall.isWall.WALLIS, board.getInputWallorPawn(validWall));
+    Assertions.assertEquals(IsWall.TypeWall.WALLIS, board.getInputWallorPawn(validWall));
     Scanner validPawn = new Scanner("PaWn");
-    assertEquals(IsWall.isWall.WALLIS, board.getInputWallorPawn(validPawn));
+    assertEquals(IsWall.TypeWall.WALLIS,
+        board.getInputWallorPawn(validPawn));
     Scanner invalidNum = new Scanner("1");
-    assertEquals(IsWall.isWall.WALLISNT, board.getInputWallorPawn(invalidNum));
+    assertEquals(IsWall.TypeWall.WALLISNT, board.getInputWallorPawn(invalidNum));
     Scanner invalidStr = new Scanner("heLLoTh3rr3Gen3r@lKen0bi");
-    assertEquals(IsWall.isWall.WALLISNT, board.getInputWallorPawn(invalidStr));
+    assertEquals(IsWall.TypeWall.WALLISNT, board.getInputWallorPawn(invalidStr));
   }
 
   @org.junit.jupiter.api.Test
