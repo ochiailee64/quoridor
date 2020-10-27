@@ -9,25 +9,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class BoardTest {
 
   @org.junit.jupiter.api.Test
-  void getInputWallorPawn() {
+  void getInputWallOrPawn() {
+    Board board = new Board();
+
     Scanner validWall = new Scanner("wALl");
-    Assertions.assertEquals(IsWall.isWall.WALLIS, Board.getInputWallorPawn(validWall));
+    Assertions.assertEquals(IsWall.isWall.WALLIS, board.getInputWallorPawn(validWall));
     Scanner validPawn = new Scanner("PaWn");
-    assertEquals(IsWall.isWall.WALLIS, Board.getInputWallorPawn(validPawn));
+    assertEquals(IsWall.isWall.WALLIS, board.getInputWallorPawn(validPawn));
     Scanner invalidNum = new Scanner("1");
-    assertEquals(IsWall.isWall.WALLISNT, Board.getInputWallorPawn(invalidNum));
+    assertEquals(IsWall.isWall.WALLISNT, board.getInputWallorPawn(invalidNum));
     Scanner invalidStr = new Scanner("heLLoTh3rr3Gen3r@lKen0bi");
-    assertEquals(IsWall.isWall.WALLISNT, Board.getInputWallorPawn(invalidStr));
+    assertEquals(IsWall.isWall.WALLISNT, board.getInputWallorPawn(invalidStr));
   }
 
   @org.junit.jupiter.api.Test
   void determineWin() {
+    Board board = new Board();
+
     Pawn p1 = new Pawn(17, 17);
     Pawn p2 = new Pawn(1, 1);
     Pawn p3 = new Pawn(5, 5);
 
-    assertEquals(1, Board.determineWin(1, p1));
-    assertEquals(2, Board.determineWin(2, p2));
-    assertEquals(-1, Board.determineWin(1, p3));
+    assertEquals(1, board.determineWin(1, p1));
+    assertEquals(2, board.determineWin(2, p2));
+    assertEquals(-1, board.determineWin(1, p3));
   }
 }

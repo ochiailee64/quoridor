@@ -33,17 +33,15 @@ public class Wall extends GamePieces {
   /*
    * geXWall() - get wall x coordinate
    */
-  public static int getXWall(Scanner s) {
-    System.out.println("Input x location for wall: ");
-    return s.nextInt();
+  public int getX() {
+    return x;
   }
 
   /*
-   * getYWall - get wall Y coordinate
+   * getY() - get wall Y coordinate
    */
-  public static int getYWall(Scanner s) {
-    System.out.println("Input y direction for wall: ");
-    return s.nextInt();
+  public int getY() {
+    return y;
   }
 
   /*
@@ -100,11 +98,6 @@ public class Wall extends GamePieces {
       else
         break;
     }
-
-
-    x = newX;
-    y = newY;
-
     System.out.println("Please enter up, down, left, or right: ");
     Scanner sx = new Scanner(System.in);
     String direction = sx.nextLine();

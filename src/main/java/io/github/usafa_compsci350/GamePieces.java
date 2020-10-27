@@ -1,8 +1,8 @@
 package io.github.usafa_compsci350;
 
 public class GamePieces {
-  public int x;
-  public int y;
+  protected int x;
+  protected int y;
 
   public GamePieces(int x, int y) {
     this.x = x;
