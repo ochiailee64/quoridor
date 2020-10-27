@@ -21,14 +21,14 @@ class WallTest {
 
   @Test
   void getY2() {
-    Wall w = new Wall(5, 5, 6, 6);
+    Wall w = new Wall(5, 5);
     //not initialized until later
     assertEquals(0, w.getY2());
   }
 
   @Test
   void getX2() {
-    Wall w = new Wall(5, 5, 6, 6);
+    Wall w = new Wall(5, 5);
     //not initialized until later
     assertEquals(0, w.getX2());
   }

@@ -17,13 +17,6 @@ public class Wall extends GamePieces {
   }
 
   /*
-   * Constructor w/out super call
-   */
-  public Wall(int x1, int y1, int x2, int y2) {
-    super(x1, y1);
-  }
-
-  /*
    * getX2() - getter function
    */
   public int getX2() {
