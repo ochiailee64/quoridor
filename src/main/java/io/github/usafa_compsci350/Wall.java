@@ -76,8 +76,7 @@ public class Wall extends GamePieces {
     y1 = newY;
 
     System.out.println("Please enter up, down, left, or right: ");
-    Scanner sx = new Scanner(System.in);
-    String direction = sx.nextLine();
+    String direction = s.nextLine();
     if ("up".equalsIgnoreCase(direction)) {
       x2 = newX - 2;
       y2 = y1;
