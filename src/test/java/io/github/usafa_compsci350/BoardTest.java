@@ -12,7 +12,7 @@ class BoardTest {
     Board board = new Board();
 
     Scanner validWall = new Scanner("wALl");
-    Assertions.assertEquals(IsWall.TypeWall.WALLIS,
+    assertEquals(IsWall.TypeWall.WALLIS,
         board.getInputWallorPawn(validWall));
     Scanner validPawn = new Scanner("PaWn");
     assertEquals(IsWall.TypeWall.WALLIS,

@@ -78,7 +78,9 @@ public class Board {
         }
       }
     } finally {
-      s.close(); //close scanner
+      if (s != null) {
+        s.close(); //close scanner
+      }
     }
     drawBoard(gamePieces);
     System.out.printf("Player %d has won!", playerTurn);
