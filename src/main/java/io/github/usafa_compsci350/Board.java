@@ -20,10 +20,10 @@ public class Board {
    * play() - play the game
    */
   public void play() {
-    GamePieces[][] gamePieces = new GamePieces[SIZE][SIZE];
+    GamePieces[][] gamePieces = new GamePieces[SIZE][SIZE]; //make into a 1D array
     /* Create and initialize wall and pawn positions */
-    Wall[] play1Walls = new Wall[WALLSPERPLAYER]; //todo array?
-    Wall[] play2Walls = new Wall[WALLSPERPLAYER];
+    Wall[] play1Walls = new Wall[WALLSPERPLAYER]; //todo array? -awaiting clarification
+    Wall[] play2Walls = new Wall[WALLSPERPLAYER]; //todo array?
 
     //place walls in their starting positions
     int loc = 0;
@@ -31,18 +31,18 @@ public class Board {
       play1Walls[i] = new Wall(0, loc);
       play2Walls[i] = new Wall(WALLSPERPLAYER-1, loc);
 
-      gamePieces[play1Walls[i].getX()][play1Walls[i].getY()] = play1Walls[i]; //todo array?
-      gamePieces[play2Walls[i].getX()][play2Walls[i].getY()] = play2Walls[i];
+      gamePieces[play1Walls[i].getX()][play1Walls[i].getY()] = play1Walls[i]; //todo array? -awaiting clarification
+      gamePieces[play2Walls[i].getX()][play2Walls[i].getY()] = play2Walls[i]; //todo array?
 
       loc += 2;
     }
 
     //initialize pawns at starting locations
-    Pawn p1pawn = new Pawn(1, 9);
-    Pawn p2pawn = new Pawn(17, 9);
+    Pawn p1pawn = new Pawn(1, 9); //todo array? -awaiting clarification
+    Pawn p2pawn = new Pawn(17, 9); //todo array?
 
-    gamePieces[p1pawn.getX()][p1pawn.getY()] = p1pawn; //todo array?
-    gamePieces[p2pawn.getX()][p2pawn.getY()] = p2pawn;
+    gamePieces[p1pawn.getX()][p1pawn.getY()] = p1pawn; //todo array? -awaiting clarification
+    gamePieces[p2pawn.getX()][p2pawn.getY()] = p2pawn; //todo array?
 
     drawBoard(gamePieces);
   }
