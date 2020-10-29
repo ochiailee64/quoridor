@@ -4,7 +4,10 @@ import java.util.Arrays;
 
 public class Board {
   /* Fields */
-  //Size of board + 2 rows/columns for unplaced walls
+  //Size of board is 9x9 (so 9 per row)
+  //Walls have their own movement lanes b/w pwn lanes
+  //So there's an additional 8 places for walls
+  //Finally there's +2 rows/columns for displaying unplaced walls
   public static final int SIZE = 19;
   private static final int WALLSPERPLAYER = 10;
 
