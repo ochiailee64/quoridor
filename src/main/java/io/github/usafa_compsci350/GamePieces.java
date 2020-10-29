@@ -16,4 +16,17 @@ public class GamePieces {
   public int getY() {
     return y1;
   }
+
+  /*
+   * pickChar() - char to print based on class instance
+   */
+  protected char pickChar() {
+    String objClassInstance = this.getClass().getName();
+    if ("io.github.usafa_compsci350.Pawn".equalsIgnoreCase(objClassInstance)) {
+      return '0';
+    }
+    else {
+      return '8';
+    }
+  }
 }
