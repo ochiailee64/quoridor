@@ -7,6 +7,7 @@ public class Board {
   /* Fields */
   public static final int SIZE = 19; //Size of board + 2 rows/columns for unplaced walls
 
+
   public static void main(String[] args) {
     int playerturn = 1;
     //Per current spec, num of players is 2
@@ -29,6 +30,9 @@ public class Board {
       loc += 2;
     }
 
+    boolean isAi = (inputPlayerCount() == 1);
+    AI andrew = new AI();
+
     //initialize pawns at starting locations
     Pawn p1pawn = new Pawn(1, 9);
     Pawn p2pawn = new Pawn(17, 9);
@@ -36,12 +40,13 @@ public class Board {
     gamePieces[p1pawn.getX()][p1pawn.getY()] = p1pawn;
     gamePieces[p2pawn.getX()][p2pawn.getY()] = p2pawn;
 
-    /* Draw Board */
-    //drawBoard(gamePieces);
 
     /* Let user place pawns and walls */
     int p1WallIndex = 0; //place walls from "left to right" (really index 0 to 9)
     int p2WallIndex = 0;
+    if(isAi)
+      p2WallIndex = 9;
+
     while (true) {
       drawBoard(gamePieces);
       if (playerturn == 1) {
@@ -56,9 +61,22 @@ public class Board {
         ++playerturn;
       } else if (playerturn == 2) {
         System.out.println("Turn: Player 2");
-        if (turn(s, gamePieces, p2pawn, play2Walls, p2WallIndex)) {
-          ++p2WallIndex;
-          s.nextLine();
+        if(isAi){
+          Pawn old = new Pawn(p2pawn.getX(), p2pawn.getY());
+          if(andrew.getAIMove(p2pawn, gamePieces, play2Walls)) {
+            tailUpdate(gamePieces, play2Walls[p2WallIndex]);
+            updateBoard(gamePieces, play2Walls[p2WallIndex]);
+            p2WallIndex--;
+          }
+          else {
+            updateBoard(gamePieces, p2pawn);
+            removeOldPiece(gamePieces, old);
+          }
+        }else {
+          if (turn(s, gamePieces, p2pawn, play2Walls, p2WallIndex)) {
+            ++p2WallIndex;
+            s.nextLine();
+          }
         }
         if (determineWin(playerturn, p2pawn) == 2) {
           break;
@@ -163,9 +181,12 @@ public class Board {
     System.out.println("Welcome to the Quoridor!");
     Scanner s = new Scanner(System.in);
     while (true) {
-      System.out.println("\nEnter the number of players (2 or 4): ");
+      System.out.println("\nEnter the number of players (1 or 2): ");
       String input = s.next();
       //ensure input is an integer
+
+      if("1".equals(input))
+        return 1;
       if ("2".equals(input)) {
         return 2;
       } else if ("4".equals(input)) {

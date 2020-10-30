@@ -57,6 +57,7 @@ public class Pawn extends GamePieces {
 
       if (direction.equalsIgnoreCase("down")) {
         if (!determineBotBlocking(board)) {
+          //System.out.println("is this reached");
           x += 2;
           break;
         } else {

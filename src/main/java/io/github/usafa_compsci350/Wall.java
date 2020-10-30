@@ -19,9 +19,9 @@ public class Wall extends GamePieces {
   /*
    * Constructor w/out super call
    */
-  public Wall(int x, int y, int x2, int y2) {
-    super(x, y);
-  }
+//  public Wall(int x, int y, int x2, int y2) {
+//    super(x, y);
+//  }
 
   /*
    * isValidMove() - check to see if the move is valid
@@ -35,14 +35,6 @@ public class Wall extends GamePieces {
    */
   public static int getXWall(Scanner s) {
     System.out.println("Input x location for wall: ");
-    return s.nextInt();
-  }
-
-  /*
-   * getYWall - get wall Y coordinate
-   */
-  public static int getYWall(Scanner s) {
-    System.out.println("Input y direction for wall: ");
     return s.nextInt();
   }
 
@@ -95,7 +87,7 @@ public class Wall extends GamePieces {
       System.out.println("Enter new y");
       newY = s.nextInt();
 
-      if (newX % 2 != 0 && newY % 2 != 0)
+      if (newX % 2 != 0 && newY % 2 != 1)
         System.out.println("Not valid");
       else
         break;
@@ -122,5 +114,7 @@ public class Wall extends GamePieces {
       y2 = newY + 2;
       x2 = newX;
     }
+
   }
+
 }
