@@ -11,82 +11,90 @@ public class Board {
   public static void main(String[] args) {
     int playerturn = 1;
     GamePieces[][] gamePieces = new GamePieces[SIZE][SIZE];
-    Scanner s = new Scanner(System.in);
 
-    Wall[] play1Walls = new Wall[10];
-    Wall[] play2Walls = new Wall[10];
+    Scanner s = null;
+    try {
+      s = new Scanner(System.in);
 
-    int loc = 0;
-    for (int i = 0; i < 10; i++) {
-      play1Walls[i] = new Wall(0, loc);
-      play2Walls[i] = new Wall(18, loc);
+      Wall[] play1Walls = new Wall[10];
+      Wall[] play2Walls = new Wall[10];
 
-      gamePieces[play1Walls[i].getX()][play1Walls[i].getY()] = play1Walls[i];
-      gamePieces[play2Walls[i].getX()][play2Walls[i].getY()] = play2Walls[i];
+      int loc = 0;
+      for (int i = 0; i < 10; i++) {
+        play1Walls[i] = new Wall(0, loc);
+        play2Walls[i] = new Wall(18, loc);
 
-      loc += 2;
-    }
+        gamePieces[play1Walls[i].getxLocation()][play1Walls[i].getyLocation()] = play1Walls[i];
+        gamePieces[play2Walls[i].getxLocation()][play2Walls[i].getyLocation()] = play2Walls[i];
 
-    boolean isAi = inputPlayerCount() == 1;
-    AI andrew = new AI();
-
-    Pawn p1pawn = new Pawn(1, 9);
-    Pawn p2pawn = new Pawn(17, 9);
-
-    gamePieces[p1pawn.getX()][p1pawn.getY()] = p1pawn;
-    gamePieces[p2pawn.getX()][p2pawn.getY()] = p2pawn;
-
-    int p1WallIndex = 0;
-    int p2WallIndex = 0;
-    if (isAi) {
-      p2WallIndex = 9;
-    }
-
-    while (true) {
-      drawBoard(gamePieces);
-      if (playerturn == 1) {
-        System.out.println("Turn: Player 1");
-        if (turn(s, gamePieces, p1pawn, play1Walls, p1WallIndex)) {
-          ++p1WallIndex;
-          s.nextLine();
-        }
-        if (determineWin(playerturn, p1pawn) == 1) {
-          break;
-        }
-        ++playerturn;
-      } else if (playerturn == 2) {
-        System.out.println("Turn: Player 2");
-        if (isAi){
-          Pawn old = new Pawn(p2pawn.getX(), p2pawn.getY());
-          if (andrew.getAImove(p2pawn, gamePieces, play2Walls)) {
-            tailUpdate(gamePieces, play2Walls[p2WallIndex]);
-            updateBoard(gamePieces, play2Walls[p2WallIndex]);
-            p2WallIndex--;
-          } else {
-            updateBoard(gamePieces, p2pawn);
-            removeOldPiece(gamePieces, old);
-          }
-        } else {
-          if (turn(s, gamePieces, p2pawn, play2Walls, p2WallIndex)) {
-            ++p2WallIndex;
-            s.nextLine();
-          }
-        }
-        if (determineWin(playerturn, p2pawn) == 2) {
-          break;
-        }
-        ++playerturn;
-      } else if (playerturn == 3) {
-        ++playerturn;
-      } else {
-        playerturn = 1;
+        loc += 2;
       }
 
+      boolean isAi = inputPlayerCount() == 1;
+      AI andrew = new AI();
+
+      Pawn p1pawn = new Pawn(1, 9);
+      Pawn p2pawn = new Pawn(17, 9);
+
+      gamePieces[p1pawn.getxLocation()][p1pawn.getyLocation()] = p1pawn;
+      gamePieces[p2pawn.getxLocation()][p2pawn.getyLocation()] = p2pawn;
+
+
+      int p1WallIndex = 0;
+      int p2WallIndex = 0;
+      if (isAi) {
+        p2WallIndex = 9;
+      }
+
+      while (true) {
+        drawBoard(gamePieces);
+        if (playerturn == 1) {
+          System.out.println("Turn: Player 1");
+          if (turn(s, gamePieces, p1pawn, play1Walls, p1WallIndex)) {
+            ++p1WallIndex;
+            s.nextLine();
+          }
+          if (determineWin(playerturn, p1pawn) == 1) {
+            System.out.printf("Winner is %d won", playerturn);
+            break;
+          }
+          ++playerturn;
+        } else if (playerturn == 2) {
+          System.out.println("Turn: Player 2");
+          if (isAi) {
+            Pawn old = new Pawn(p2pawn.getxLocation(), p2pawn.getyLocation());
+            if (andrew.getAImove(p2pawn, gamePieces, play2Walls)) {
+              tailUpdate(gamePieces, play2Walls[p2WallIndex]);
+              updateBoard(gamePieces, play2Walls[p2WallIndex]);
+              p2WallIndex--;
+            } else {
+              updateBoard(gamePieces, p2pawn);
+              removeOldPiece(gamePieces, old);
+            }
+          } else {
+            if (turn(s, gamePieces, p2pawn, play2Walls, p2WallIndex)) {
+              ++p2WallIndex;
+              s.nextLine();
+            }
+          }
+          if (determineWin(playerturn, p2pawn) == 2) {
+            System.out.printf("Winner is %d won", playerturn);
+            break;
+          }
+          ++playerturn;
+        } else if (playerturn == 3) {
+          ++playerturn;
+        } else {
+          playerturn = 1;
+        }
+      }
+    } finally {
+      if (s != null) {
+        s.close();
+      }
     }
-    s.close(); //close scanner
-    drawBoard(gamePieces);
-    System.out.printf("Winner is %d won", playerturn);
   }
+
 
   public static void drawBoard(GamePieces[][] gamePieces) {
     char[][] ascii = new char[SIZE][SIZE];
@@ -118,12 +126,12 @@ public class Board {
   }
 
   public static void updateBoard(GamePieces[][] gamePieces, GamePieces piece) {
-    gamePieces[piece.getX()][piece.getY()] = piece;
+    gamePieces[piece.getxLocation()][piece.getyLocation()] = piece;
   }
 
   public static void removeOldPiece(GamePieces[][] gamePieces,
                                     GamePieces piece) {
-    gamePieces[piece.getX()][piece.getY()] = null;
+    gamePieces[piece.getxLocation()][piece.getyLocation()] = null;
   }
 
 
@@ -173,11 +181,11 @@ public class Board {
 
   public static int determineWin(int playerturn, Pawn p) {
     if (playerturn == 1) {
-      if (p.getX() >= 17) {
+      if (p.getxLocation() >= 17) {
         return 1;
       }
     } else if (playerturn == 2) {
-      if (p.getX() <= 1) {
+      if (p.getxLocation() <= 1) {
         return 2;
       }
     } else {

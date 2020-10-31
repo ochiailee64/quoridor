@@ -12,7 +12,8 @@ class BoardTest {
   @org.junit.jupiter.api.Test
   void getInputWallorPawn() {
     Scanner validWall = new Scanner("wALl");
-    Assertions.assertEquals(IsWall.IsWaLl.WALLIS, Board.getInputWallorPawn(validWall));
+    Assertions.assertEquals(IsWall.IsWaLl.WALLIS,
+        Board.getInputWallorPawn(validWall));
     Scanner validPawn = new Scanner("PaWn");
     assertEquals(IsWall.IsWaLl.WALLIS, Board.getInputWallorPawn(validPawn));
     Scanner invalidNum = new Scanner("1");

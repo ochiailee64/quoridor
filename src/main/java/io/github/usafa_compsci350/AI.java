@@ -3,7 +3,7 @@ package io.github.usafa_compsci350;
 import java.util.Random;
 
 public class AI {
-  private static java.util.Random rand
+  private static Random rand
       = new Random(System.currentTimeMillis());
   private int wall;
 
@@ -31,38 +31,38 @@ public class AI {
     int direction = (int) ((rand.nextDouble() * 4) + 1);
 
     while (previous == direction) {
-      direction = (int) ((rand.nextDouble() * 4) + 1);
+      direction = (int) (rand.nextDouble() * 4) + 1;
     }
 
     if (direction == 1) {
-      p.setX(p.getX() - 2);
-      if (p.getX() < 1) {
-        p.setX(p.getX() + 2);
+      p.setxLocation(p.getxLocation() - 2);
+      if (p.getxLocation() < 1) {
+        p.setxLocation(p.getxLocation() + 2);
         aiPlacePawn(p, gamePieces);
       }
     }
 
     if (direction == 2) {
-      p.setX(p.getX() + 2);
-      if (p.getX() > 17) {
-        p.setX(p.getX() - 2);
+      p.setxLocation(p.getxLocation() + 2);
+      if (p.getxLocation() > 17) {
+        p.setxLocation(p.getxLocation() - 2);
         aiPlacePawn(p, gamePieces);
       }
 
     }
 
     if (direction == 3) {
-      p.setY(p.getY() - 2);
-      if (p.getY() < 1) {
-        p.setY(p.getY() + 2);
+      p.setyLocation(p.getyLocation() - 2);
+      if (p.getyLocation() < 1) {
+        p.setyLocation(p.getyLocation() + 2);
         aiPlacePawn(p, gamePieces);
       }
     }
 
     if (direction == 4) {
-      p.setY(p.getY() + 2);
-      if (p.getY() > 16) {
-        p.setY(p.getY() - 2);
+      p.setyLocation(p.getyLocation() + 2);
+      if (p.getyLocation() > 16) {
+        p.setyLocation(p.getyLocation() - 2);
         aiPlacePawn(p, gamePieces);
       }
     }
@@ -84,40 +84,40 @@ public class AI {
       aiPlaceWall(playerWalls, gamePieces);
     }
 
-    int oldX = playerWalls[wall].getX();
-    int oldY = playerWalls[wall].getY();
+    int oldX = playerWalls[wall].getxLocation();
+    int oldY = playerWalls[wall].getyLocation();
     int oldX2 = playerWalls[wall].getX2();
     int oldY2 = playerWalls[wall].getY2();
 
-    playerWalls[wall].setX(randomNum);
-    playerWalls[wall].setY(randomNumY);
+    playerWalls[wall].setxLocation(randomNum);
+    playerWalls[wall].setyLocation(randomNumY);
 
 
     int randomDir = 1 + (int) (rand.nextDouble() * ((4 - 1) + 1));
 
     if (randomDir == 1) {
-      playerWalls[wall].setX2(playerWalls[wall].getX() + 2);
-      playerWalls[wall].setY2(playerWalls[wall].getY());
+      playerWalls[wall].setX2(playerWalls[wall].getxLocation() + 2);
+      playerWalls[wall].setY2(playerWalls[wall].getyLocation());
     }
 
     if (randomDir == 2) {
-      playerWalls[wall].setX2(playerWalls[wall].getX() - 2);
-      playerWalls[wall].setY2(playerWalls[wall].getY());
+      playerWalls[wall].setX2(playerWalls[wall].getxLocation() - 2);
+      playerWalls[wall].setY2(playerWalls[wall].getyLocation());
     }
 
     if (randomDir == 3) {
-      playerWalls[wall].setY2(playerWalls[wall].getY() + 2);
-      playerWalls[wall].setX2(playerWalls[wall].getX());
+      playerWalls[wall].setY2(playerWalls[wall].getyLocation() + 2);
+      playerWalls[wall].setX2(playerWalls[wall].getxLocation());
     }
 
     if (randomDir == 4) {
-      playerWalls[wall].setY2(playerWalls[wall].getY() - 2);
-      playerWalls[wall].setX2(playerWalls[wall].getX());
+      playerWalls[wall].setY2(playerWalls[wall].getyLocation() - 2);
+      playerWalls[wall].setX2(playerWalls[wall].getxLocation());
     }
 
     if (!isValidMove(gamePieces, playerWalls[wall])) {
-      playerWalls[wall].setX(oldX);
-      playerWalls[wall].setY(oldY);
+      playerWalls[wall].setxLocation(oldX);
+      playerWalls[wall].setyLocation(oldY);
       playerWalls[wall].setY2(oldY2);
       playerWalls[wall].setX2(oldX2);
       aiPlaceWall(playerWalls, gamePieces);
@@ -128,7 +128,7 @@ public class AI {
   }
 
   private boolean isValidMove(GamePieces[][] gamePieces, Wall wallToPlace) {
-    if (gamePieces[wallToPlace.getX()][wallToPlace.getY()] == null) {
+    if (gamePieces[wallToPlace.getxLocation()][wallToPlace.getyLocation()] == null) {
       return gamePieces[wallToPlace.getX2()][wallToPlace.getY2()] == null;
     }
     return false;
@@ -137,27 +137,27 @@ public class AI {
 
   private boolean isValidPawn(Pawn p, GamePieces[][] gamePieces,
                               int direction) {
-    if (gamePieces[p.getX()][p.getY()] == null) {
+    if (gamePieces[p.getxLocation()][p.getyLocation()] == null) {
       if (direction == 1) {
-        if (gamePieces[p.getX() + 1][p.getY()] == null) {
+        if (gamePieces[p.getxLocation() + 1][p.getyLocation()] == null) {
           return true;
         }
       }
 
       if (direction == 2) {
-        if (gamePieces[p.getX() - 1][p.getY()] == null) {
+        if (gamePieces[p.getxLocation() - 1][p.getyLocation()] == null) {
           return true;
         }
       }
 
       if (direction == 3) {
-        if (gamePieces[p.getX()][p.getY() + 1] == null) {
+        if (gamePieces[p.getxLocation()][p.getyLocation() + 1] == null) {
           return true;
         }
       }
 
       if (direction == 4) {
-        if (gamePieces[p.getX()][p.getY() - 1] == null) {
+        if (gamePieces[p.getxLocation()][p.getyLocation() - 1] == null) {
           return true;
         }
       }

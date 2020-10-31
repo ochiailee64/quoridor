@@ -9,19 +9,19 @@ public class Pawn extends GamePieces {
   }
 
   public boolean determineTopBlocking(GamePieces[][] board) {
-    return board[x - 1][y] != null;
+    return board[xLocation - 1][yLocation] != null;
   }
 
   public boolean determineRightBlocking(GamePieces[][] board) {
-    return board[x][y + 1] != null;
+    return board[xLocation][yLocation + 1] != null;
   }
 
   public boolean determineLeftBlocking(GamePieces[][] board) {
-    return board[x][y - 1] != null;
+    return board[xLocation][yLocation - 1] != null;
   }
 
   public boolean determineBotBlocking(GamePieces[][] board) {
-    return board[x + 1][y] != null;
+    return board[xLocation + 1][yLocation] != null;
   }
 
   public void newPawnPosition(Scanner s, GamePieces[][] board) {
@@ -30,7 +30,7 @@ public class Pawn extends GamePieces {
       String direction = s.nextLine();
       if ("up".equalsIgnoreCase(direction)) {
         if (!determineTopBlocking(board)) {
-          x -= 2;
+          xLocation -= 2;
           break;
         } else {
           System.out.println("invalid move");
@@ -40,7 +40,7 @@ public class Pawn extends GamePieces {
       if ("down".equalsIgnoreCase(direction)) {
         if (!determineBotBlocking(board)) {
           //System.out.println("is this reached");
-          x += 2;
+          xLocation += 2;
           break;
         } else {
           System.out.println("invalid move");
@@ -49,7 +49,7 @@ public class Pawn extends GamePieces {
 
       if ("left".equalsIgnoreCase(direction)) {
         if (!determineLeftBlocking(board)) {
-          y -= 2;
+          yLocation -= 2;
           break;
         } else {
           System.out.println("invalid move");
@@ -58,7 +58,7 @@ public class Pawn extends GamePieces {
 
       if ("right".equalsIgnoreCase(direction)) {
         if (!determineRightBlocking(board)) {
-          y += 2;
+          yLocation += 2;
           break;
         } else {
           System.out.println("invalid move");

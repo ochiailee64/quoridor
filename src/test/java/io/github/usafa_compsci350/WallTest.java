@@ -1,8 +1,8 @@
 package io.github.usafa_compsci350;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 class WallTest {
 
@@ -10,13 +10,13 @@ class WallTest {
   @Test
   void getXWall() {
     Wall w = new Wall(5, 5);
-    assertEquals(5, w.getX());
+    assertEquals(5, w.getxLocation());
   }
 
   @Test
   void getYWall() {
     Wall w = new Wall(5, 5);
-    assertEquals(5, w.getY());
+    assertEquals(5, w.getyLocation());
   }
 
   @Test
