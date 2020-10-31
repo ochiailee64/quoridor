@@ -14,8 +14,6 @@ public class AI {
         this.previous = 0;
     }
 
-    
-
     public boolean getAIMove(Pawn P, GamePieces[][] gamePieces, Wall[] playerWalls) {
         int mov = (int) (rand.nextDouble() + .5);
         if (mov == 1 & wall != -1) {
