@@ -23,13 +23,13 @@ class WallTest {
   void getY2() {
     Wall w = new Wall(5, 5);
     //not initialized until later
-    assertEquals(0, w.getY2());
+    assertEquals(5, w.getY2());
   }
 
   @Test
   void getX2() {
     Wall w = new Wall(5, 5);
     //not initialized until later
-    assertEquals(0, w.getX2());
+    assertEquals(5, w.getX2());
   }
 }
