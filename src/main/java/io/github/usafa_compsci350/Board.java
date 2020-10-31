@@ -36,7 +36,7 @@ public class Board {
         loc += 2;
       }
 
-      boolean isAi = inputPlayerCount() == 1;
+      boolean isAi = inputPlayerCount(s) == 1;
       AI andrew = new AI();
 
       Pawn p1pawn = new Pawn(1, 9);
@@ -166,9 +166,8 @@ public class Board {
     }
   }
 
-  private int inputPlayerCount() {
+  private int inputPlayerCount(Scanner s) {
     System.out.println("Welcome to the Quoridor!");
-    Scanner s = new Scanner(System.in);
     while (true) {
       System.out.println("\nEnter the number of players (1 or 2): ");
       String input = s.next();
