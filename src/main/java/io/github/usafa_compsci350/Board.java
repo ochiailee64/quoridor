@@ -4,11 +4,15 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Board {
-  /* Fields */
   public static final int SIZE = 19;
 
-
   public static void main(String[] args) {
+    Board board = new Board();
+    board.play();
+  }
+
+
+  public void play() {
     int playerturn = 1;
     GamePieces[][] gamePieces = new GamePieces[SIZE][SIZE];
 
@@ -24,8 +28,10 @@ public class Board {
         play1Walls[i] = new Wall(0, loc);
         play2Walls[i] = new Wall(18, loc);
 
-        gamePieces[play1Walls[i].getxLocation()][play1Walls[i].getyLocation()] = play1Walls[i];
-        gamePieces[play2Walls[i].getxLocation()][play2Walls[i].getyLocation()] = play2Walls[i];
+        gamePieces[play1Walls[i].getX1()][play1Walls[i].getY1()]
+            = play1Walls[i];
+        gamePieces[play2Walls[i].getX1()][play2Walls[i].getY1()]
+            = play2Walls[i];
 
         loc += 2;
       }
@@ -36,8 +42,8 @@ public class Board {
       Pawn p1pawn = new Pawn(1, 9);
       Pawn p2pawn = new Pawn(17, 9);
 
-      gamePieces[p1pawn.getxLocation()][p1pawn.getyLocation()] = p1pawn;
-      gamePieces[p2pawn.getxLocation()][p2pawn.getyLocation()] = p2pawn;
+      gamePieces[p1pawn.getX1()][p1pawn.getY1()] = p1pawn;
+      gamePieces[p2pawn.getX1()][p2pawn.getY1()] = p2pawn;
 
 
       int p1WallIndex = 0;
@@ -62,7 +68,7 @@ public class Board {
         } else if (playerturn == 2) {
           System.out.println("Turn: Player 2");
           if (isAi) {
-            Pawn old = new Pawn(p2pawn.getxLocation(), p2pawn.getyLocation());
+            Pawn old = new Pawn(p2pawn.getX1(), p2pawn.getY1());
             if (andrew.getAImove(p2pawn, gamePieces, play2Walls)) {
               tailUpdate(gamePieces, play2Walls[p2WallIndex]);
               updateBoard(gamePieces, play2Walls[p2WallIndex]);
@@ -96,7 +102,7 @@ public class Board {
   }
 
 
-  public static void drawBoard(GamePieces[][] gamePieces) {
+  public void drawBoard(GamePieces[][] gamePieces) {
     char[][] ascii = new char[SIZE][SIZE];
     for (int i = 0; i < SIZE; i++) {
       for (int j = 0; j < SIZE; j++) {
@@ -125,23 +131,23 @@ public class Board {
     return IsWall.IsWaLl.WALLISNT;
   }
 
-  public static void updateBoard(GamePieces[][] gamePieces, GamePieces piece) {
-    gamePieces[piece.getxLocation()][piece.getyLocation()] = piece;
+  public void updateBoard(GamePieces[][] gamePieces, GamePieces piece) {
+    gamePieces[piece.getX1()][piece.getY1()] = piece;
   }
 
-  public static void removeOldPiece(GamePieces[][] gamePieces,
+  public void removeOldPiece(GamePieces[][] gamePieces,
                                     GamePieces piece) {
-    gamePieces[piece.getxLocation()][piece.getyLocation()] = null;
+    gamePieces[piece.getX1()][piece.getY1()] = null;
   }
 
 
-  public static void tailUpdate(GamePieces[][] gamePieces, Wall piece) {
+  public void tailUpdate(GamePieces[][] gamePieces, Wall piece) {
     Wall temp = new Wall(piece.getX2(), piece.getY2());
     gamePieces[piece.getX2()][piece.getY2()] = temp;
     System.out.println(piece.getX2());
   }
 
-  private static boolean turn(Scanner s, GamePieces[][] gamePieces,
+  private boolean turn(Scanner s, GamePieces[][] gamePieces,
                               Pawn pawn, Wall[] playerWalls, int wallIndex) {
     IsWall.IsWaLl wallorNot = getInputWallorPawn(s);
     if (wallorNot == IsWall.IsWaLl.WALLISNT) {
@@ -160,7 +166,7 @@ public class Board {
     }
   }
 
-  private static int inputPlayerCount() {
+  private int inputPlayerCount() {
     System.out.println("Welcome to the Quoridor!");
     Scanner s = new Scanner(System.in);
     while (true) {
@@ -181,11 +187,11 @@ public class Board {
 
   public static int determineWin(int playerturn, Pawn p) {
     if (playerturn == 1) {
-      if (p.getxLocation() >= 17) {
+      if (p.getX1() >= 17) {
         return 1;
       }
     } else if (playerturn == 2) {
-      if (p.getxLocation() <= 1) {
+      if (p.getX1() <= 1) {
         return 2;
       }
     } else {

@@ -10,13 +10,13 @@ class WallTest {
   @Test
   void getXWall() {
     Wall w = new Wall(5, 5);
-    assertEquals(5, w.getxLocation());
+    assertEquals(5, w.getX1());
   }
 
   @Test
   void getYWall() {
     Wall w = new Wall(5, 5);
-    assertEquals(5, w.getyLocation());
+    assertEquals(5, w.getY1());
   }
 
   @Test
