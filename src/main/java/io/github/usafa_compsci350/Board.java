@@ -52,6 +52,8 @@ public class Board {
         p2WallIndex = 9;
       }
 
+      s.nextLine();
+
       while (true) {
         drawBoard(gamePieces);
         if (playerturn == 1) {
@@ -176,8 +178,6 @@ public class Board {
         return 1;
       } else if ("2".equals(input)) {
         return 2;
-      } else if ("4".equals(input)) {
-        return 4;
       } else {
         System.out.println("Invalid number of players. Please try again.");
       }
