@@ -13,8 +13,8 @@ class BoardTest {
   void getInputWallorPawn() {
     Scanner validWall = null;
     try {
-     validWall = new Scanner("wALl");
-        assertEquals(IsWall.IsWaLl.WALLIS,
+      validWall = new Scanner("wALl");
+      assertEquals(IsWall.IsWaLl.WALLIS,
           Board.getInputWallorPawn(validWall));
     } finally {
       if (validWall != null) {
