@@ -135,7 +135,8 @@ public class AI {
 
   }
 
-  private boolean isValidPawn(Pawn p, GamePieces[][] gamePieces, int direction) {
+  private boolean isValidPawn(Pawn p, GamePieces[][] gamePieces,
+                              int direction) {
     if (gamePieces[p.getX()][p.getY()] == null) {
       if (direction == 1) {
         if (gamePieces[p.getX() + 1][p.getY()] == null) {

@@ -5,20 +5,17 @@ import java.util.Scanner;
 
 public class Board {
   /* Fields */
-  public static final int SIZE = 19; //Size of board + 2 rows/columns for unplaced walls
+  public static final int SIZE = 19;
 
 
   public static void main(String[] args) {
     int playerturn = 1;
-    //Per current spec, num of players is 2
     GamePieces[][] gamePieces = new GamePieces[SIZE][SIZE];
     Scanner s = new Scanner(System.in);
 
-    /* Create and initialize wall and pawn positions */
     Wall[] play1Walls = new Wall[10];
     Wall[] play2Walls = new Wall[10];
 
-    //place walls in their starting positions
     int loc = 0;
     for (int i = 0; i < 10; i++) {
       play1Walls[i] = new Wall(0, loc);
@@ -30,18 +27,15 @@ public class Board {
       loc += 2;
     }
 
-    boolean isAi = (inputPlayerCount() == 1);
+    boolean isAi = inputPlayerCount() == 1;
     AI andrew = new AI();
 
-    //initialize pawns at starting locations
     Pawn p1pawn = new Pawn(1, 9);
     Pawn p2pawn = new Pawn(17, 9);
 
     gamePieces[p1pawn.getX()][p1pawn.getY()] = p1pawn;
     gamePieces[p2pawn.getX()][p2pawn.getY()] = p2pawn;
 
-
-    /* Let user place pawns and walls */
     int p1WallIndex = 0;
     int p2WallIndex = 0;
     if (isAi) {
@@ -64,7 +58,7 @@ public class Board {
         System.out.println("Turn: Player 2");
         if (isAi){
           Pawn old = new Pawn(p2pawn.getX(), p2pawn.getY());
-          if(andrew.getAImove(p2pawn, gamePieces, play2Walls)) {
+          if (andrew.getAImove(p2pawn, gamePieces, play2Walls)) {
             tailUpdate(gamePieces, play2Walls[p2WallIndex]);
             updateBoard(gamePieces, play2Walls[p2WallIndex]);
             p2WallIndex--;
@@ -72,7 +66,7 @@ public class Board {
             updateBoard(gamePieces, p2pawn);
             removeOldPiece(gamePieces, old);
           }
-        }else {
+        } else {
           if (turn(s, gamePieces, p2pawn, play2Walls, p2WallIndex)) {
             ++p2WallIndex;
             s.nextLine();
@@ -94,9 +88,6 @@ public class Board {
     System.out.printf("Winner is %d won", playerturn);
   }
 
-  /*
-   * drawBoard() - draw the gamePieces
-   */
   public static void drawBoard(GamePieces[][] gamePieces) {
     char[][] ascii = new char[SIZE][SIZE];
     for (int i = 0; i < SIZE; i++) {
@@ -115,9 +106,6 @@ public class Board {
     }
   }
 
-  /*
-   * getInputWallorPawn() - Let user choose to place a "wall" or "pawn"
-   */
   public static IsWall.IsWaLl getInputWallorPawn(Scanner s) {
     String choice = s.nextLine();
     if ("wall".equalsIgnoreCase(choice)) {
@@ -129,33 +117,22 @@ public class Board {
     return IsWall.IsWaLl.WALLISNT;
   }
 
-  /*
-   * updateBoard() - 'add' piece to gamePieces at a location
-   */
   public static void updateBoard(GamePieces[][] gamePieces, GamePieces piece) {
     gamePieces[piece.getX()][piece.getY()] = piece;
   }
 
-  /*
-   * removeOldPiece() - sets old piece to null
-   */
   public static void removeOldPiece(GamePieces[][] gamePieces,
                                     GamePieces piece) {
     gamePieces[piece.getX()][piece.getY()] = null;
   }
 
-  /*
-   * tailUpdate() - places second part of wall
-   */
+
   public static void tailUpdate(GamePieces[][] gamePieces, Wall piece) {
     Wall temp = new Wall(piece.getX2(), piece.getY2());
     gamePieces[piece.getX2()][piece.getY2()] = temp;
     System.out.println(piece.getX2());
   }
 
-  /*
-   * Turn() - takes user commands to set pawn and wall locations
-   */
   private static boolean turn(Scanner s, GamePieces[][] gamePieces,
                               Pawn pawn, Wall[] playerWalls, int wallIndex) {
     IsWall.IsWaLl wallorNot = getInputWallorPawn(s);
@@ -175,16 +152,12 @@ public class Board {
     }
   }
 
-  /*
-   * inputPlayerCount() - get number of players
-   */
   private static int inputPlayerCount() {
     System.out.println("Welcome to the Quoridor!");
     Scanner s = new Scanner(System.in);
     while (true) {
       System.out.println("\nEnter the number of players (1 or 2): ");
       String input = s.next();
-      //ensure input is an integer
 
       if ("1".equals(input)) {
         return 1;
@@ -198,16 +171,13 @@ public class Board {
     }
   }
 
-  /*
-   * determineWin() - check indices to check if a player has won
-   */
   public static int determineWin(int playerturn, Pawn p) {
     if (playerturn == 1) {
-      if (p.getX() >= 17) { //opponent start
+      if (p.getX() >= 17) {
         return 1;
       }
     } else if (playerturn == 2) {
-      if (p.getX() <= 1) { //opponent start
+      if (p.getX() <= 1) {
         return 2;
       }
     } else {
