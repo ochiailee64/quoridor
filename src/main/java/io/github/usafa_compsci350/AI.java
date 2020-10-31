@@ -157,13 +157,4 @@ public class AI<direction> {
             return false;
 
     }
-
-
-    //- method of AIMovement randomly decides between a wall placement or pawn movement or the AI
-//    AIPlaceWall() //- method of AIMovement places an AI wall randomly in a valid location
-//    AIPawnMove() //- method of AIMovement which moves the AI’s pawn randomly in a valid direction
-//    isValidMove() //- method of AIMovement which checks if the AI’s wall placement or pawn move is valid/within the dimensions of the game board
-
-
-
 }
