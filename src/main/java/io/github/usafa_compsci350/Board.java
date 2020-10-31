@@ -42,10 +42,11 @@ public class Board {
 
 
     /* Let user place pawns and walls */
-    int p1WallIndex = 0; //place walls from "left to right" (really index 0 to 9)
+    int p1WallIndex = 0;
     int p2WallIndex = 0;
-    if(isAi)
+    if (isAi) {
       p2WallIndex = 9;
+    }
 
     while (true) {
       drawBoard(gamePieces);
@@ -61,14 +62,13 @@ public class Board {
         ++playerturn;
       } else if (playerturn == 2) {
         System.out.println("Turn: Player 2");
-        if(isAi){
+        if (isAi){
           Pawn old = new Pawn(p2pawn.getX(), p2pawn.getY());
-          if(andrew.getAIMove(p2pawn, gamePieces, play2Walls)) {
+          if(andrew.getAImove(p2pawn, gamePieces, play2Walls)) {
             tailUpdate(gamePieces, play2Walls[p2WallIndex]);
             updateBoard(gamePieces, play2Walls[p2WallIndex]);
             p2WallIndex--;
-          }
-          else {
+          } else {
             updateBoard(gamePieces, p2pawn);
             removeOldPiece(gamePieces, old);
           }
@@ -118,15 +118,15 @@ public class Board {
   /*
    * getInputWallorPawn() - Let user choose to place a "wall" or "pawn"
    */
-  public static IsWall.isWall getInputWallorPawn(Scanner s) {
+  public static IsWall.IsWaLl getInputWallorPawn(Scanner s) {
     String choice = s.nextLine();
     if ("wall".equalsIgnoreCase(choice)) {
-      return IsWall.isWall.WALLIS;
+      return IsWall.IsWaLl.WALLIS;
     }
     if ("pawn".equalsIgnoreCase(choice)) {
-      return IsWall.isWall.WALLISNT;
+      return IsWall.IsWaLl.WALLISNT;
     }
-    return IsWall.isWall.WALLISNT;
+    return IsWall.IsWaLl.WALLISNT;
   }
 
   /*
@@ -139,7 +139,8 @@ public class Board {
   /*
    * removeOldPiece() - sets old piece to null
    */
-  public static void removeOldPiece(GamePieces[][] gamePieces, GamePieces piece) {
+  public static void removeOldPiece(GamePieces[][] gamePieces,
+                                    GamePieces piece) {
     gamePieces[piece.getX()][piece.getY()] = null;
   }
 
@@ -157,8 +158,8 @@ public class Board {
    */
   private static boolean turn(Scanner s, GamePieces[][] gamePieces,
                               Pawn pawn, Wall[] playerWalls, int wallIndex) {
-    IsWall.isWall wallorNot = getInputWallorPawn(s);
-    if (wallorNot == IsWall.isWall.WALLISNT) {
+    IsWall.IsWaLl wallorNot = getInputWallorPawn(s);
+    if (wallorNot == IsWall.IsWaLl.WALLISNT) {
       System.out.println("selected pawn");
       removeOldPiece(gamePieces, pawn);
       pawn.newPawnPosition(s, gamePieces);
@@ -185,9 +186,9 @@ public class Board {
       String input = s.next();
       //ensure input is an integer
 
-      if("1".equals(input))
+      if ("1".equals(input)) {
         return 1;
-      if ("2".equals(input)) {
+      } else if ("2".equals(input)) {
         return 2;
       } else if ("4".equals(input)) {
         return 4;

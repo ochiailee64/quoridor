@@ -17,11 +17,11 @@ public class GamePieces {
     return y;
   }
 
-  public void setY(int y){
+  public void setY(int y) {
     this.y = y;
   }
 
-  public void setX(int x){
+  public void setX(int x) {
     this.x = x;
   }
 
