@@ -1,10 +1,10 @@
 package io.github.usafa_compsci350;
 
-import java.awt.*;
 import java.util.Random;
 
 public class AI<direction> {
-    private static java.util.Random rand = new Random(System.currentTimeMillis());
+    private static java.util.Random rand
+            = new Random(System.currentTimeMillis());
     private int wall;
 //    private boolean movWall = false;
 
@@ -108,7 +108,7 @@ public class AI<direction> {
             playerWalls[wall].setY2(playerWalls[wall].getY() - 2);
             playerWalls[wall].setX2(playerWalls[wall].getX());
         }
-        
+
         if(!isValidMove(gamePieces, playerWalls[wall])){
             playerWalls[wall].setX(oldX);
             playerWalls[wall].setY(oldY);
