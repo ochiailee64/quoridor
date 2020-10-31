@@ -1,10 +1,11 @@
 package io.github.usafa_compsci350;
 
-import java.util.Scanner;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Scanner;
 import org.junit.jupiter.api.Assertions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class BoardTest {
 

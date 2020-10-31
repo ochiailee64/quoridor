@@ -66,13 +66,13 @@ public class Wall extends GamePieces {
     Scanner sx = new Scanner(System.in);
     String direction = sx.nextLine();
 
-    if (direction.equalsIgnoreCase("up")) {
+    if ("up".equalsIgnoreCase(direction)) {
       x2 = newX - 2;
       y2 = y;
-    } else if (direction.equalsIgnoreCase("down")) {
+    } else if ("down".equalsIgnoreCase(direction)) {
       x2 = newX + 2;
       y2 = y;
-    } else if (direction.equalsIgnoreCase("left")) {
+    } else if ("left".equalsIgnoreCase(direction)) {
       y2 = newY - 2;
       x2 = newX;
     } else {

@@ -1,8 +1,8 @@
 package io.github.usafa_compsci350;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 class PawnTest {
 
