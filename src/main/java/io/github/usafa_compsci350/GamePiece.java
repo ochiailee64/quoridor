@@ -24,17 +24,4 @@ public class GamePiece {
   public void setY1(int y1) {
     this.y1 = y1;
   }
-
-  /*
-   * pickChar() - char to print based on class instance
-   */
-  protected char pickChar() {
-    String objClassInstance = this.getClass().getName();
-    if ("io.github.usafa_compsci350.Pawn".equalsIgnoreCase(objClassInstance)) {
-      return '0';
-    }
-    else {
-      return '8';
-    }
-  }
 }
