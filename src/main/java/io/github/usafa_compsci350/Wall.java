@@ -1,12 +1,12 @@
 package io.github.usafa_compsci350;
 
-public class Wall extends GamePieces {
+public class Wall extends GamePiece {
   /* Fields */
   private int x2;
   private int y2;
 
   /*
-   * Constructor w/ super call to GamePieces
+   * Constructor w/ super call to GamePiece
    */
   public Wall(int x1, int y1) {
     super(x1, y1);

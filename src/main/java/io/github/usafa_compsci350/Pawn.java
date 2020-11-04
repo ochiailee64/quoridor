@@ -1,6 +1,6 @@
 package io.github.usafa_compsci350;
 
-public class Pawn extends GamePieces {
+public class Pawn extends GamePiece {
   /*
    * Class Constructor
    */
