@@ -62,18 +62,13 @@ public class Board {
    */
   private void drawBoard() {
     for (int column = 0; column < SIZE; ++column) {
-      System.out.print(',');
       for (int row = 0; row < SIZE; ++row) {
         /* Check each board on piece */
-        if (isWall(column, row))
-        {
+        if (isWall(column, row)) {
           System.out.print('8');
-        }
-        else if (isPawn(column, row))
-        {
+        } else if (isPawn(column, row)) {
           System.out.print('0');
-        }
-        else {
+        } else {
           System.out.print(' ');
         }
         System.out.print(',');
@@ -89,8 +84,8 @@ public class Board {
     for (Wall[] playersWalls : walls) {
       for (Wall wall : playersWalls) {
         //test both wall locations
-        if ((wall.getX1() == x && wall.getY1() == y)
-            || (wall.getX2() == x && wall.getY2() == y)) {
+        if (wall.getX1() == x && wall.getY1() == y
+            || wall.getX2() == x && wall.getY2() == y) {
           return true;
         }
       }
