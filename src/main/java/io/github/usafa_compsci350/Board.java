@@ -73,8 +73,7 @@ public class Board {
         {
           System.out.print('0');
         }
-        else
-          {
+        else {
           System.out.print(' ');
         }
         System.out.print(',');
@@ -90,9 +89,8 @@ public class Board {
     for (Wall[] playersWalls : walls) {
       for (Wall wall : playersWalls) {
         //test both wall locations
-        if (((wall.getX1() == x) && (wall.getY1() == y))
-            ||
-            ((wall.getX2() == x) && (wall.getY2() == y))) {
+        if ((wall.getX1() == x && wall.getY1() == y)
+            || (wall.getX2() == x && wall.getY2() == y)) {
           return true;
         }
       }
@@ -105,7 +103,7 @@ public class Board {
    */
   private boolean isPawn(int x, int y) {
     for (Pawn pawn : pawns) {
-      if ((pawn.getX1() == x) && (pawn.getY1() == y)) {
+      if (pawn.getX1() == x && pawn.getY1() == y) {
         return true;
       }
     }
