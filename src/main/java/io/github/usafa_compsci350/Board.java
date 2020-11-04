@@ -42,11 +42,13 @@ public class Board {
         loc = 0; //reset position
         /* Create and place pawns - Each pwn
         assignment is 1 player to 1 pawn w/ a unique initialization*/
-        if (player == 0) {
+        if (player == 0)
+        {
           //centers player 1 pawn at starting position
           pawns[player] = new Pawn(1, 9);
         }
-        else {
+        else
+          {
           //centers player 2 pawn at starting position
           pawns[player] = new Pawn(17, 9);
         }
@@ -63,13 +65,16 @@ public class Board {
       System.out.print(',');
       for (int row = 0; row < SIZE; ++row) {
         /* Check each board on piece */
-        if (isWall(column, row)) {
+        if (isWall(column, row))
+        {
           System.out.print('8');
         }
-        else if (isPawn(column, row)) {
+        else if (isPawn(column, row))
+        {
           System.out.print('0');
         }
-        else {
+        else
+          {
           System.out.print(' ');
         }
         System.out.print(',');
