@@ -1,8 +1,5 @@
 package io.github.usafa_compsci350;
 
-import java.io.PrintStream;
-import java.util.Arrays;
-
 public class Board {
   /* Fields */
   //Size of board is 9x9 (so 9 per row)
@@ -38,16 +35,21 @@ public class Board {
           if (player == 0) {
             walls[player][wall] = new Wall(0, loc);
           } else {
-            walls[player][wall] = new Wall(SIZE-1, loc);
+            walls[player][wall] = new Wall(SIZE - 1, loc);
           }
           loc += 2; //increment location (pawns and walls have their own lanes
         }
         loc = 0; //reset position
-        /* Create and place pawns - Each pwn assignment is 1 player to 1 pawn w/ a unique initialization*/
-        if (player == 0)
-          pawns[player] = new Pawn(1, 9); //centers player 1 pawn at starting position
-        else
-          pawns[player] = new Pawn(17, 9); //centers player 2 pawn at starting position
+        /* Create and place pawns - Each pwn
+        assignment is 1 player to 1 pawn w/ a unique initialization*/
+        if (player == 0) {
+          //centers player 1 pawn at starting position
+          pawns[player] = new Pawn(1, 9);
+        }
+        else {
+          //centers player 2 pawn at starting position
+          pawns[player] = new Pawn(17, 9);
+        }
       }
     }
     drawBoard();
@@ -58,6 +60,7 @@ public class Board {
    */
   private void drawBoard() {
     for (int column = 0; column < SIZE; ++column) {
+      System.out.print(',');
       for (int row = 0; row < SIZE; ++row) {
         /* Check each board on piece */
         if (isWall(column, row)) {
@@ -82,9 +85,11 @@ public class Board {
     for (Wall[] playersWalls : walls) {
       for (Wall wall : playersWalls) {
         //test both wall locations
-        if (((wall.getX1() == x) && (wall.getY1() == y)) ||
-            ((wall.getX2() == x) && (wall.getY2() == y)))
+        if (((wall.getX1() == x) && (wall.getY1() == y))
+            ||
+            ((wall.getX2() == x) && (wall.getY2() == y))) {
           return true;
+        }
       }
     }
     return false;
@@ -95,8 +100,9 @@ public class Board {
    */
   private boolean isPawn(int x, int y) {
     for (Pawn pawn : pawns) {
-      if ((pawn.getX1() == x) && (pawn.getY1() == y))
+      if ((pawn.getX1() == x) && (pawn.getY1() == y)) {
         return true;
+      }
     }
     return false;
   }
