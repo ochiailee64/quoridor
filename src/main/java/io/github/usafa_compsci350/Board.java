@@ -1,5 +1,6 @@
 package io.github.usafa_compsci350;
 
+import java.io.PrintStream;
 import java.util.Arrays;
 
 public class Board {
@@ -10,7 +11,6 @@ public class Board {
   //Finally there's +2 rows/columns for displaying unplaced walls
   public static final int SIZE = 19;
   private static final int WALLSPERPLAYER = 10;
-  private final int numPlayers = 2;
   private Wall[][] walls;
   private Pawn[] pawns;
 
@@ -24,6 +24,7 @@ public class Board {
    */
   public void play() {
     int numPieces = 22;
+    int numPlayers = 2;
     walls = new Wall[numPlayers][WALLSPERPLAYER];
     pawns = new Pawn[numPlayers];
 
