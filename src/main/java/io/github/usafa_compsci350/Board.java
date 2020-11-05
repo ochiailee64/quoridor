@@ -25,17 +25,7 @@ public class Board {
   public Board() {
     walls = new Wall[numPlayers][WALLS_PER_PLAYER];
     pawns = new Pawn[numPlayers];
-  }
 
-  public static void main(String[] args) {
-    Board board = new Board();
-    board.play();
-  }
-
-  /*
-   * play() - play the game
-   */
-  public void play() {
     /* Create and place each wall */
     int loc = 0;
     for (int player = 0; player < numPlayers; ++player) {
@@ -58,6 +48,17 @@ public class Board {
         pawns[player] = new Pawn(17, 9);
       }
     }
+  }
+
+  public static void main(String[] args) {
+    Board board = new Board();
+    board.play();
+  }
+
+  /*
+   * play() - play the game
+   */
+  public void play() {
     drawBoard();
   }
 

@@ -1,57 +1,65 @@
 package io.github.usafa_compsci350;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import org.junit.jupiter.api.Test;
 
 public class BoardTest {
+  public static void main(String[] args) {
+    BoardTest boardTest = new BoardTest();
+    boardTest.printBoardTest();
+  }
+
   @Test
   public void printBoardTest() {
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
     //main only draws the board right now
     Board board = new Board();
-    board.play();
+    board.drawBoard(new PrintStream(stream));
     String actual = stream.toString();
     //expected string representation of board
     String expected =
-        "8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8,\n"
-            +
-            " , , , , , , , , ,1, , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , , , , , , , , , , , ,\n"
-            +
-            " , , , , , , , , ,2, , , , , , , , , ,\n"
-            +
-            "8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8,\n";
+        "8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8,"
+            + System.lineSeparator() +
+            " , , , , , , , , ,1, , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , , , , , , , , , , , ,"
+            + System.lineSeparator() +
+            " , , , , , , , , ,2, , , , , , , , , ,"
+            + System.lineSeparator() +
+            "8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8,"
+            + System.lineSeparator();
     Assertions.assertEquals(expected, actual);
   }
 }
