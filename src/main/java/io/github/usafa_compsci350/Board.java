@@ -15,14 +15,15 @@ public class Board {
   //So there's an additional 8 places for walls
   //Finally there's +2 rows/columns for displaying unplaced walls
   public static final int SIZE = 19;
-  private static final int WALLS_PER_PLAYER = 10;
-  //CI Build made me do this
+  private static final int NUM_WALLS = 20;
   private static final int numPlayers = 2;
   private final Wall[][] walls;
   private final Pawn[] pawns;
 
   /* Constructor */
   public Board() {
+    final int WALLS_PER_PLAYER = NUM_WALLS / numPlayers;
+
     walls = new Wall[numPlayers][WALLS_PER_PLAYER];
     pawns = new Pawn[numPlayers];
 
