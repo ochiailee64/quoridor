@@ -17,21 +17,19 @@ public class Board {
   public static final int SIZE = 19;
   private static final int NUM_WALLS = 20;
   private static final int numPlayers = 2;
-  private int WALLS_PER_PLAYER;
   private final Wall[][] walls;
   private final Pawn[] pawns;
 
   /* Constructor */
   public Board() {
-    WALLS_PER_PLAYER = NUM_WALLS / numPlayers;
-
-    walls = new Wall[numPlayers][WALLS_PER_PLAYER];
+    int wallsPerPlayer = NUM_WALLS / numPlayers;
+    walls = new Wall[numPlayers][wallsPerPlayer];
     pawns = new Pawn[numPlayers];
 
     /* Create and place each wall */
     int loc = 0;
     for (int player = 0; player < numPlayers; ++player) {
-      for (int wall = 0; wall < WALLS_PER_PLAYER; wall++) {
+      for (int wall = 0; wall < wallsPerPlayer; wall++) {
         if (player == 0) {
           walls[player][wall] = new Wall(0, loc);
         } else {
