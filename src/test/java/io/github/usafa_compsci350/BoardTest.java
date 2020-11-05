@@ -11,7 +11,8 @@ public class BoardTest {
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
     //main only draws the board right now
-    new Board().drawBoard(new PrintStream(stream));
+    Board board = new Board();
+    board.play();
     //Board.main(new PrintStream(stream));
     String actual = stream.toString();
     //expected string representation of board
