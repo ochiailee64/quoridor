@@ -1,15 +1,30 @@
 package io.github.usafa_compsci350;
 
+import java.io.PrintStream;
+
 public class Board {
+  enum PawnId {
+    NO_PAWN_PRESENT,
+    PAWN1,
+    PAWN2
+  }
+
   /* Fields */
   //Size of board is 9x9 (so 9 per row)
-  //Walls have their own movement lanes b/w pwn lanes
+  //Walls have their own movement lanes b/w pawn lanes
   //So there's an additional 8 places for walls
   //Finally there's +2 rows/columns for displaying unplaced walls
   public static final int SIZE = 19;
-  private static final int WALLSPERPLAYER = 10;
-  private Wall[][] walls;
-  private Pawn[] pawns;
+  private static final int WALLS_PER_PLAYER = 10;
+  private final int numPlayers = 2;
+  private final Wall[][] walls;
+  private final Pawn[] pawns;
+
+  /* Constructor */
+  public Board() {
+    walls = new Wall[numPlayers][WALLS_PER_PLAYER];
+    pawns = new Pawn[numPlayers];
+  }
 
   public static void main(String[] args) {
     Board board = new Board();
@@ -20,38 +35,26 @@ public class Board {
    * play() - play the game
    */
   public void play() {
-    int numPieces = 22;
-    int numPlayers = 2;
-    walls = new Wall[numPlayers][WALLSPERPLAYER];
-    pawns = new Pawn[numPlayers];
-
-    /* Place walls and pawns in gamePieces -
-    Structured as [ [p1 walls], p1 pawn, [p2 walls], p2 pwn, ... ] */
-    for (int piece = 0; piece < numPieces; ++piece) {
-      /* Create and place each wall */
-      int loc = 0;
-      for (int player = 0; player < numPlayers; ++player) {
-        for (int wall = 0; wall < WALLSPERPLAYER; wall++) {
-          if (player == 0) {
-            walls[player][wall] = new Wall(0, loc);
-          } else {
-            walls[player][wall] = new Wall(SIZE - 1, loc);
-          }
-          loc += 2; //increment location (pawns and walls have their own lanes
+    /* Create and place each wall */
+    int loc = 0;
+    for (int player = 0; player < numPlayers; ++player) {
+      for (int wall = 0; wall < WALLS_PER_PLAYER; wall++) {
+        if (player == 0) {
+          walls[player][wall] = new Wall(0, loc);
+        } else {
+          walls[player][wall] = new Wall(SIZE - 1, loc);
         }
-        loc = 0; //reset position
-        /* Create and place pawns - Each pwn
+        loc += 2; //increment location (pawns and walls have their own lanes
+      }
+      loc = 0; //reset position
+        /* Create and place pawns - Each pawn
         assignment is 1 player to 1 pawn w/ a unique initialization*/
-        if (player == 0)
-        {
-          //centers player 1 pawn at starting position
-          pawns[player] = new Pawn(1, 9);
-        }
-        else
-          {
-          //centers player 2 pawn at starting position
-          pawns[player] = new Pawn(17, 9);
-        }
+      if (player == 0) {
+        //centers player 1 pawn at starting position
+        pawns[player] = new Pawn(1, 9);
+      } else {
+        //centers player 2 pawn at starting position
+        pawns[player] = new Pawn(17, 9);
       }
     }
     drawBoard();
@@ -61,19 +64,28 @@ public class Board {
    * drawBoard() - draw the gamePieces
    */
   private void drawBoard() {
+    drawBoard(System.out);
+  }
+
+  public void drawBoard(PrintStream printStream) {
     for (int column = 0; column < SIZE; ++column) {
       for (int row = 0; row < SIZE; ++row) {
         /* Check each board on piece */
         if (isWall(column, row)) {
-          System.out.print('8');
-        } else if (isPawn(column, row)) {
-          System.out.print('0');
+          printStream.print('8');
+        } else if (isPawn(column, row) != PawnId.NO_PAWN_PRESENT) {
+          if (isPawn(column, row) == PawnId.PAWN1) {
+            printStream.print('1');
+          }
+          else {
+            printStream.print('2');
+          }
         } else {
-          System.out.print(' ');
+          printStream.print(' ');
         }
-        System.out.print(',');
+        printStream.print(',');
       }
-      System.out.println(); //let os handle column newlines
+      printStream.println(); //let os handle column newlines
     }
   }
 
@@ -84,8 +96,7 @@ public class Board {
     for (Wall[] playersWalls : walls) {
       for (Wall wall : playersWalls) {
         //test both wall locations
-        if (wall.getX1() == x && wall.getY1() == y
-            || wall.getX2() == x && wall.getY2() == y) {
+        if (wall.covers(x, y)) {
           return true;
         }
       }
@@ -96,12 +107,17 @@ public class Board {
   /*
    * isPawn() - returns true if a pawn is at that location
    */
-  private boolean isPawn(int x, int y) {
-    for (Pawn pawn : pawns) {
-      if (pawn.getX1() == x && pawn.getY1() == y) {
-        return true;
+  private PawnId isPawn(int x, int y) {
+    for (int i = 0; i < pawns.length; ++i) {
+      if (pawns[i].covers(x, y)) {
+        if (i == 0) {
+          return PawnId.PAWN1;
+        }
+        else {
+          return PawnId.PAWN2;
+        }
       }
     }
-    return false;
+    return PawnId.NO_PAWN_PRESENT;
   }
 }
