@@ -3,7 +3,6 @@ package io.github.usafa_compsci350;
 import org.junit.jupiter.api.Assertions;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import org.junit.jupiter.api.Test;
 
 public class BoardTest {
@@ -23,43 +22,80 @@ public class BoardTest {
     //expected string representation of board
     String expected =
         "8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , ,1, , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , , , , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             " , , , , , , , , ,2, , , , , , , , , ,"
-            + System.lineSeparator() +
+            +
+            System.lineSeparator()
+            +
             "8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8, ,8,"
-            + System.lineSeparator();
+            +
+            System.lineSeparator();
     Assertions.assertEquals(expected, actual);
   }
 }
