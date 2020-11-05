@@ -1,8 +1,8 @@
 package io.github.usafa_compsci350;
 
-import org.junit.jupiter.api.Assertions;
-import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class BoardTest {

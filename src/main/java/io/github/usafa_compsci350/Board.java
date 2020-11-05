@@ -16,7 +16,8 @@ public class Board {
   //Finally there's +2 rows/columns for displaying unplaced walls
   public static final int SIZE = 19;
   private static final int WALLS_PER_PLAYER = 10;
-  private final int numPlayers = 2;
+  //CI Build made me do this
+  private static final int numPlayers = 2;
   private final Wall[][] walls;
   private final Pawn[] pawns;
 

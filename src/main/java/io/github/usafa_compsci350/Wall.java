@@ -20,11 +20,8 @@ public class Wall extends GamePiece {
    * covers() - test if there's a walls at position x,y
    */
   public boolean covers(int x, int y) {
-    if (this.getX1() == x && this.getY1() == y
-        || this.x2 == x && this.y2 == y) {
-      return true;
-    }
-    return false;
+    return this.getX1() == x && this.getY1() == y
+        || this.x2 == x && this.y2 == y;
   }
 
   /*
