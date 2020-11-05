@@ -3,12 +3,6 @@ package io.github.usafa_compsci350;
 import java.io.PrintStream;
 
 public class Board {
-  enum PawnId {
-    NO_PAWN_PRESENT,
-    PAWN1,
-    PAWN2
-  }
-
   /* Fields */
   //Size of board is 9x9 (so 9 per row)
   //Walls have their own movement lanes b/w pawn lanes
