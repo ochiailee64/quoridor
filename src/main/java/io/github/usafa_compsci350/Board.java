@@ -74,14 +74,10 @@ public class Board {
     for (int column = 0; column < SIZE; ++column) {
       for (int row = 0; row < SIZE; ++row) {
         /* Check each board on piece */
-        if (isWall(column, row)) {
-          printStream.print('8');
-        } else if (isPawn(column, row) != PawnId.NO_PAWN_PRESENT) {
-          if (isPawn(column, row) == PawnId.PAWN1) {
-            printStream.print('1');
-          } else {
-            printStream.print('2');
-          }
+        if (isWall(column, row) != null) {
+          printStream.print(isWall(column, row));
+        } else if (isPawn(column, row) != null) {
+          printStream.print(isPawn(column, row));
         } else {
           printStream.print(' ');
         }
@@ -92,33 +88,33 @@ public class Board {
   }
 
   /*
-   * isWall() - returns true if a wall is at that location
+   * isWall() - returns "8" if a wall is at that location
    */
-  private boolean isWall(int x, int y) {
+  private String isWall(int x, int y) {
     for (Wall[] playersWalls : walls) {
       for (Wall wall : playersWalls) {
         //test both wall locations
         if (wall.covers(x, y)) {
-          return true;
+          return "8";
         }
       }
     }
-    return false;
+    return null;
   }
 
   /*
-   * isPawn() - returns true if a pawn is at that location
+   * isPawn() - returns "1" or "2" if a pawn is at that location
    */
-  private PawnId isPawn(int x, int y) {
+  private String isPawn(int x, int y) {
     for (int i = 0; i < pawns.length; ++i) {
       if (pawns[i].covers(x, y)) {
         if (i == 0) {
-          return PawnId.PAWN1;
+          return "1";
         } else {
-          return PawnId.PAWN2;
+          return "2";
         }
       }
     }
-    return PawnId.NO_PAWN_PRESENT;
+    return null;
   }
 }
