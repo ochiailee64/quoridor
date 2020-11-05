@@ -17,12 +17,13 @@ public class Board {
   public static final int SIZE = 19;
   private static final int NUM_WALLS = 20;
   private static final int numPlayers = 2;
+  private int WALLS_PER_PLAYER;
   private final Wall[][] walls;
   private final Pawn[] pawns;
 
   /* Constructor */
   public Board() {
-    final int WALLS_PER_PLAYER = NUM_WALLS / numPlayers;
+    WALLS_PER_PLAYER = NUM_WALLS / numPlayers;
 
     walls = new Wall[numPlayers][WALLS_PER_PLAYER];
     pawns = new Pawn[numPlayers];
