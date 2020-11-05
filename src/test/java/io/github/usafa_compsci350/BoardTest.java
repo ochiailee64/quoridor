@@ -1,9 +1,8 @@
 package io.github.usafa_compsci350;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import java.io.ByteArrayOutputStream;
 
 public class BoardTest {
   @Test
@@ -13,7 +12,6 @@ public class BoardTest {
     //main only draws the board right now
     Board board = new Board();
     board.play();
-    //Board.main(new PrintStream(stream));
     String actual = stream.toString();
     //expected string representation of board
     String expected =
