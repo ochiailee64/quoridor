@@ -47,8 +47,8 @@ public class Board {
         loc += 2; //increment location (pawns and walls have their own lanes
       }
       loc = 0; //reset position
-        /* Create and place pawns - Each pawn
-        assignment is 1 player to 1 pawn w/ a unique initialization*/
+      /* Create and place pawns - Each pawn
+      assignment is 1 player to 1 pawn w/ a unique initialization*/
       if (player == 0) {
         //centers player 1 pawn at starting position
         pawns[player] = new Pawn(1, 9);
@@ -76,8 +76,7 @@ public class Board {
         } else if (isPawn(column, row) != PawnId.NO_PAWN_PRESENT) {
           if (isPawn(column, row) == PawnId.PAWN1) {
             printStream.print('1');
-          }
-          else {
+          } else {
             printStream.print('2');
           }
         } else {
@@ -112,8 +111,7 @@ public class Board {
       if (pawns[i].covers(x, y)) {
         if (i == 0) {
           return PawnId.PAWN1;
-        }
-        else {
+        } else {
           return PawnId.PAWN2;
         }
       }
