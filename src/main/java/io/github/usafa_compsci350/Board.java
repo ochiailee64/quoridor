@@ -57,13 +57,13 @@ public class Board {
   }
 
   public void drawBoard(PrintStream printStream) {
-    for (int column = 0; column < SIZE; ++column) {
-      for (int row = 0; row < SIZE; ++row) {
+    for (int row = 0; row < SIZE; ++row) {
+      for (int column = 0; column < SIZE; ++column) {
         /* Check each board on piece */
-        if (isWall(column, row) != null) {
-          printStream.print(isWall(column, row));
-        } else if (isPawn(column, row) != null) {
-          printStream.print(isPawn(column, row));
+        if (isWall(row, column) != null) {
+          printStream.print(isWall(row, column));
+        } else if (isPawn(row, column) != null) {
+          printStream.print(isPawn(row, column));
         } else {
           printStream.print(' ');
         }
