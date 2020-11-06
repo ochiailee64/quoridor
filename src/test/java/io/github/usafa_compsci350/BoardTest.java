@@ -6,13 +6,8 @@ import java.io.PrintStream;
 import org.junit.jupiter.api.Test;
 
 public class BoardTest {
-  public static void main(String[] args) {
-    BoardTest boardTest = new BoardTest();
-    boardTest.printBoardTest();
-  }
-
   @Test
-  public void printBoardTest() {
+  public void drawBoardTest() {
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
     //main only draws the board right now

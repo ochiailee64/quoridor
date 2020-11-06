@@ -24,23 +24,16 @@ public class Board {
     int loc = 0;
     for (int player = 0; player < numPlayers; ++player) {
       for (int wall = 0; wall < wallsPerPlayer; wall++) {
-        if (player == 0) {
-          walls[player][wall] = new Wall(0, loc);
-        } else {
-          walls[player][wall] = new Wall(SIZE - 1, loc);
-        }
+        int row = player == 0 ? 0 : SIZE - 1;
+        walls[player][wall] = new Wall(row, loc);
         loc += 2; //increment location (pawns and walls have their own lanes
       }
       loc = 0; //reset position
       /* Create and place pawns - Each pawn
-      assignment is 1 player to 1 pawn w/ a unique initialization*/
-      if (player == 0) {
-        //centers player 1 pawn at starting position
-        pawns[player] = new Pawn(1, 9);
-      } else {
-        //centers player 2 pawn at starting position
-        pawns[player] = new Pawn(17, 9);
-      }
+      assignment is 1 player to 1 pawn w/ a unique initialization */
+      //center pawns at starting positions
+      int row = player == 0 ? 1 : 17;
+      pawns[player] = new Pawn(row, 9);
     }
   }
 
