@@ -1,14 +1,21 @@
 package io.github.usafa_compsci350;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Scanner;
+
 
 public class Board {
   public static final int SIZE = 19;
 
   public static void main(String[] args) {
     Board board = new Board();
-    board.play();
+    DrawingPanel panel = new DrawingPanel(500, 600);
+    Graphics g = panel.getGraphics();
+    g.setColor(Color.CYAN);
+    //g.draw3DRect(200, 200, 50, 50, false);
+    g.fill3DRect(200, 200, 50, 50, false);
+    //board.play();
   }
 
 
