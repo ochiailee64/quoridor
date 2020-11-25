@@ -10,13 +10,22 @@ public class Board {
 
   public static void main(String[] args) {
     Board board = new Board();
-    DrawingPanel panel = new DrawingPanel(500, 600);
+    DrawingPanel panel = new DrawingPanel(450, 450);
     Graphics g = panel.getGraphics();
     g.setColor(Color.CYAN);
-    //g.draw3DRect(200, 200, 50, 50, false);
-    g.fill3DRect(200, 200, 50, 50, false);
-    //board.play();
+    board.draw(g);
+
+    board.play();
   }
+
+  public void draw(Graphics g){
+    for (int i = 0; i < 18; i++) {
+      for (int j = 0; j < 18; j++) {
+        g.draw3DRect(i * 25, j * 25, 25, 25, (i%2 == 0));
+      }
+    }
+  }
+
 
 
   public void play() {
