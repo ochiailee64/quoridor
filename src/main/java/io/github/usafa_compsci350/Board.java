@@ -13,22 +13,35 @@ public class Board {
     DrawingPanel panel = new DrawingPanel(450, 450);
     Graphics g = panel.getGraphics();
     g.setColor(Color.CYAN);
-    board.draw(g);
-
-    board.play();
+    board.play(g);
   }
 
-  public void draw(Graphics g){
-    for (int i = 0; i < 18; i++) {
-      for (int j = 0; j < 18; j++) {
+  public void draw(Graphics g, Wall[] pOneWalls, Wall[] pTwoWalls, Pawn player1, Pawn player2){
+    g.setColor(Color.CYAN);
+
+    for (int i = 0; i < 20; i++) {
+      for (int j = 0; j < 20; j++) {
         g.draw3DRect(i * 25, j * 25, 25, 25, (i%2 == 0));
       }
     }
+
+    for (int i = 0; i < 10; i ++) {
+      g.setColor(Color.RED);   g.drawLine(pOneWalls[i].getY1() * 25 + 12,pOneWalls[i].getX1() * 25 + 12,
+          pOneWalls[i].getY2() * 25 + 12, pOneWalls[i].getX2() * 25 + 12);
+
+      g.setColor(Color.BLACK);
+      g.drawLine(pTwoWalls[i].getY1() * 25 + 12,pTwoWalls[i].getX1() * 25 + 12,
+          pTwoWalls[i].getY2() * 25 + 12, pTwoWalls[i].getX2() * 25 + 12);
+    }
+    g.setColor(Color.RED);
+    g.drawRect(player1.getY1() * 25 + 5, player1.getX1() * 25 + 5, 10, 10);
+    g.setColor(Color.BLACK);
+    g.drawRect(player2.getY1() * 25 + 5, player2.getX1() * 25 + 5, 10, 10);
+
+
   }
 
-
-
-  public void play() {
+  public void play(Graphics g) {
     int playerturn = 1;
     GamePieces[][] gamePieces = new GamePieces[SIZE][SIZE];
 
@@ -72,6 +85,8 @@ public class Board {
 
       while (true) {
         drawBoard(gamePieces);
+        draw(g, play1Walls, play2Walls, p1pawn, p2pawn);
+
         if (playerturn == 1) {
           System.out.println("Turn: Player 1");
           if (turn(s, gamePieces, p1pawn, play1Walls, p1WallIndex)) {
